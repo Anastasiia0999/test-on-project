@@ -1,0 +1,1 @@
+export const createdQuestionsSelector = (state) => state.models.questions.createQuestion;
