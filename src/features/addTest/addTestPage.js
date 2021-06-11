@@ -18,7 +18,6 @@ import {PreviewPageModal} from "../previewModal/previewPage";
 import {paths} from "../../shared/routes/paths";
 import {useHistory} from "react-router-dom";
 import {createTest} from "../../models/test/actions";
-import {editQuestion} from "../../models/question/actions";
 
 export const AddTestPage = () =>{
     const styles = useStylesAddTest();
@@ -353,7 +352,7 @@ export const AddTestPage = () =>{
                                         : null
                                 }
 
-                                <a href="#" name="time-limit"> </a>
+                                <a href="#home" name="time-limit"> </a>
                                 <div className={styles.stepTitleContainer}>
                                     <h3 className={styles.stepTitle}>5. Додати обмеження часу</h3>
                                     <InfoIcon className={styles.icon}
