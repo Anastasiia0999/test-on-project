@@ -9,7 +9,7 @@ export const useStylesMainPage = makeStyles({
     },
     banner:{
         width: '100%',
-        height:'500px',
+        height:'600px',
         backgroundImage: `url(${BannerImage})`,
         backgroundPosition: 'top',
         backgroundSize: 'cover',
