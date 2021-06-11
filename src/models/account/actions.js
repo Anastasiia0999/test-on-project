@@ -5,7 +5,6 @@ import {
 import * as actionTypes from './types.js';
 import { ApiService } from '../../shared/api-service';
 import {Cookie} from "../../utils/helpers";
-import {LSService} from "../../shared/api-service/localStorageService";
 
 
 

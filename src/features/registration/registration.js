@@ -11,7 +11,7 @@ import {registrationValidation} from '../../utils/helpers';
 import {paths} from "../../shared/routes/paths";
 import {useStylesReg} from "./regStyles";
 import {useActions} from "../../shared/hooks";
-import {currentUserSelector, login, registration, registrationSelector} from "../../models";
+import {registration, registrationSelector} from "../../models";
 import {shallowEqual, useSelector} from "react-redux";
 import {addAlert} from "../../models/alert/redux";
 

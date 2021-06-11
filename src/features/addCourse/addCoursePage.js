@@ -81,7 +81,6 @@ export const AddCoursePage = ({handleSubmitAddQuestion}) => {
                       }) => (
                         <Form className={styles.form} noValidate>
                             <div className={styles.stepsContainer}>
-                                <a href="#" name="add-topic"> </a>
                                 <h2 className={styles.containerTitle}>Додати курс</h2>
                                 <h3 className={styles.stepTitle}>Назва курсу</h3>
                                 <Field
@@ -124,8 +123,6 @@ export const AddCoursePage = ({handleSubmitAddQuestion}) => {
                                         : null
                                 }
 
-
-                                <a href="#" name="test-subscribe"> </a>
                                 <div className={styles.stepTitleContainer}>
                                     <h3 className={styles.stepTitle}>Підписники курсу</h3>
                                 </div>

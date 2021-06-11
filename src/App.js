@@ -1,9 +1,8 @@
 import './App.css';
 import {Header} from "./features/index";
 import {Footer} from "./features/index";
-import {Container, makeStyles} from "@material-ui/core";
+import {makeStyles} from "@material-ui/core";
 import {Routes} from "./shared/routes/routes";
-import { BrowserRouter as Router } from 'react-router-dom';
 
 const useStyles = makeStyles({
     appBody:{

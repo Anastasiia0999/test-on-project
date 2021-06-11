@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {useStylesPreviewModal} from "./previewModalStyles";
 import DoneOutlinedIcon from "@material-ui/icons/DoneOutlined";
-import {createTest} from "../../models/test/actions";
-import {useActions} from "../../shared/hooks";
 
 export const PreviewPageModal = ({data, handlePreviewCancel, handleTestSubmit }) => {
     const styles = useStylesPreviewModal();

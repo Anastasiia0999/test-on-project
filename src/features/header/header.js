@@ -11,7 +11,7 @@ export const Header = () => {
     const styles = useStylesHeader();
 
     const {
-        error: requestError,
+        //error: requestError,
         currentUser,
     } = useSelector(currentUserSelector, shallowEqual);
 

@@ -229,5 +229,7 @@ export const InfoCard = ({variant}) => {
                 <div className={styles.thirdlyCardInfoFifth}> </div>
             </div>
         )
+        default:
+            return null;
     }
 }

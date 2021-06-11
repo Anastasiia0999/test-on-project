@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Formik, Field, Form } from 'formik';
-import { authValidation } from '../../utils/helpers/validation-heplers';
+import { authValidation } from '../../utils/helpers';
 import {Link} from "react-router-dom";
 import {Button,} from "@material-ui/core";
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -9,10 +9,10 @@ import {useActions} from "../../shared/hooks";
 import {currentUserSelector, login} from "../../models";
 import {shallowEqual, useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
-import {Cookie} from "../../utils/helpers";
+//import {Cookie} from "../../utils/helpers";
 import {paths} from "../../shared/routes/paths";
 import {useStylesLogin} from "./logInStyles";
-import {addAlert} from "../../components/alert-box";
+import {addAlert} from "../../models/alert/redux";
 
 export const LogIn = () => {
     const styles = useStylesLogin();
@@ -20,7 +20,7 @@ export const LogIn = () => {
     const [visible, setVisibility] = useState(false);
 
     const {
-        isLoading,
+ //       isLoading,
         error: requestError,
         loaded,
         currentUser,
@@ -28,7 +28,7 @@ export const LogIn = () => {
 
     const [dispatchLogIn, dispatchAddAlert] = useActions([login, addAlert]);
     const history = useHistory();
-    const jwt = Cookie.get('jwt');
+   // const jwt = Cookie.get('jwt');
 
    /* useEffect(() => {
         if (!jwt) {

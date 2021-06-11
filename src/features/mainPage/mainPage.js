@@ -18,7 +18,7 @@ export const MainPage = () => {
     return(
             <div className={styles.mainPage}>
                 <div className={styles.banner} >
-                    <a name="banner"> </a>
+                    <a href="#home" name="banner"> </a>
                     <div className={styles.bannerCardWrapper}>
                         <div className={styles.bannerCardThirdly}>
                         </div>

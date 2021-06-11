@@ -1,5 +1,5 @@
-import { all, fork, put, call, takeLatest, takeEvery } from 'redux-saga/effects';
-import { ApiService } from '../../shared/api-service';
+import { all, fork, put, takeEvery } from 'redux-saga/effects';
+//import { ApiService } from '../../shared/api-service';
 import * as actionTypes from './types';
 
 export const createTest = (test) => ({
@@ -9,9 +9,9 @@ export const createTest = (test) => ({
     },
 });
 
-export const fetchTests = () => ({
+/*export const fetchTests = () => ({
     type: actionTypes.FETCH_TESTS,
-});
+});*/
 
 function* createTestWorker(data) {
     try {
@@ -29,7 +29,7 @@ function* createTestWorker(data) {
     }
 }
 
-function* fetchTestsWorker() {
+/*function* fetchTestsWorker() {
     try {
         yield put({ type: actionTypes.LOADING_TESTS_STARTED });
         const testsList = yield call(ApiService.load, '/tests');
@@ -39,7 +39,7 @@ function* fetchTestsWorker() {
         yield put({ type: actionTypes.LOADING_TESTS_FAILED, payload: { error } });
         yield put({ type: actionTypes.CLEAR_ERROR });
     }
-}
+}*/
 
 function* createTestWatcher() {
     yield takeEvery(actionTypes.CREATE_TEST, createTestWorker);

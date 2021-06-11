@@ -5,12 +5,10 @@ import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import {addQuestionValidation} from "../../utils/helpers";
 import {Field, Form, Formik} from "formik";
 import {useStylesModal} from "./addQuestionStyles";
-import {createdQuestionsSelector, createQuestion} from "../../models";
+import {createQuestion} from "../../models";
 import {useActions} from "../../shared/hooks";
 import {generateID} from "../../utils/helpers/helpers";
-import {shallowEqual, useSelector} from "react-redux";
 import {editQuestion} from "../../models/question/actions";
-import Dropzone from "react-dropzone";
 
 export const AddQuestionModal = ({handleSubmitAddQuestion,questionOnEdit}) => {
 
@@ -33,7 +31,7 @@ export const AddQuestionModal = ({handleSubmitAddQuestion,questionOnEdit}) => {
             setAnswerList(answers);
             setCheckList(checkedArr);
         }
-    }, []);
+    }, [questionOnEdit]);
 
     const handleSubmit = (values) =>{
         const resultValues = {...values, answers: answerList};
@@ -91,6 +89,8 @@ export const AddQuestionModal = ({handleSubmitAddQuestion,questionOnEdit}) => {
                 handleSubmitAddQuestion(resultValues);
             }
                 break;
+            default :
+                return null;
         }
     }
 
@@ -160,7 +160,6 @@ export const AddQuestionModal = ({handleSubmitAddQuestion,questionOnEdit}) => {
                       }) => (
                         <Form className={styles.form} noValidate>
                             <div className={styles.stepsContainer}>
-                                <a href="#" name="add-topic"> </a>
                                 <h2 className={styles.containerTitle}>{questionOnEdit ? 'Редагувати питання' : 'Додати питання'}</h2>
                                 <h3 className={styles.stepTitle}>Питання</h3>
                                 <Field

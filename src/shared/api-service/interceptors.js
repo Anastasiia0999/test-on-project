@@ -1,12 +1,11 @@
 import { paths } from '../routes/paths';
 import { BASE_URL } from './config.js';
 import { Cookie } from '../../utils/helpers/index';
-import {LSService} from "./localStorageService";
 import {ApiService} from "./api-service";
 
 
 
-const refreshJwtInterval = 5 * 60 * 1000; // 10 minutes
+/*const refreshJwtInterval = 5 * 60 * 1000; // 10 minutes*/
 
 export const requestInterceptor = (config) => {
     const requestConfig = { ...config };
@@ -34,8 +33,8 @@ export const requestInterceptor = (config) => {
     return requestConfig;
 };
 
-async function refreshJwt(){
-/*    return fetch(`${appConfig.baseUrl}/internal/jwt`, {
+/*async function refreshJwt(){
+/!*    return fetch(`${appConfig.baseUrl}/internal/jwt`, {
         headers: getAuthorizationHeaders()
     })
         .then(encodedResponse => encodedResponse.json())
@@ -47,7 +46,7 @@ async function refreshJwt(){
             store.dispatch(commonActions.getUpdateJwtTokenError({
                 message: 'Your access token expired. Please refresh web-page'
             }));
-        });*/
+        });*!/
     try{
         const token = Cookie.get('refreshJwt');
         console.log('refresh token',JSON.stringify({refreshToken: token}));
@@ -57,7 +56,7 @@ async function refreshJwt(){
     }catch(error){
         console.log('refresh error', error);
     }
-}
+}*/
 
 export const responseInterceptor = (response) => {
     console.log('res interseptor', response.data);

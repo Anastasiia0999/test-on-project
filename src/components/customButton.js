@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, makeStyles, Typography} from "@material-ui/core";
+import {Button, makeStyles} from "@material-ui/core";
 
 const useStyles = makeStyles({
     buttonDark:{
@@ -46,5 +46,7 @@ export const CustomButton = ({variant, textContent, width = 100, height = 80, cu
                 return (
                     <Button className={customStyles}>{textContent}</Button>
                 )
+        default:
+        return null;
         }
 }

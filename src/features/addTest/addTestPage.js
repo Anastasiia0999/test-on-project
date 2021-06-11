@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Button} from "@material-ui/core";
 import InfoIcon from '@material-ui/icons/Info';
-import {CustomButton} from "../../components/customButton";
 import DoneOutlinedIcon from '@material-ui/icons/DoneOutlined';
 import EditOutlinedIcon from '@material-ui/icons/EditOutlined';
 import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
@@ -18,7 +17,6 @@ import {useStylesAddTest} from "./addTestPageStyles";
 import {PreviewPageModal} from "../previewModal/previewPage";
 import {paths} from "../../shared/routes/paths";
 import {useHistory} from "react-router-dom";
-import {addAlert} from "../../models/alert/redux";
 import {createTest} from "../../models/test/actions";
 import {editQuestion} from "../../models/question/actions";
 
@@ -44,12 +42,12 @@ export const AddTestPage = () =>{
     const { data } = useSelector(createdQuestionsSelector, shallowEqual);
     const { error, loaded } = useSelector(createdTestSelector, shallowEqual);
 
-    const [removeQuestionDispatch, clearAllQuestions, dispatchAddAlert, dispatchEditQuestion] = useActions([removeQuestion, clearQuestions, editQuestion]);
+    const [removeQuestionDispatch,dispatchAddAlert] = useActions([removeQuestion]);
     const dispatchCreateTest = useActions(createTest);
 
    useEffect(() => {
         setQuestionList(data);
-    }, []);
+    }, [data]);
 
     useEffect(() => {
         setQuestionList(data);
@@ -72,7 +70,7 @@ export const AddTestPage = () =>{
         if(error){
             dispatchAddAlert(error, 'error');
         }
-    }, [loaded, error, dispatchAddAlert]);
+    }, [loaded, error, dispatchAddAlert, history]);
 
     const handleSubmit = (values) =>{
         const applicants = emailList.map(el =>{
@@ -195,7 +193,7 @@ export const AddTestPage = () =>{
                       }) => (
                         <Form className={styles.form} noValidate>
                             <div className={styles.stepsContainer}>
-                                <a href="#" name="add-topic"> </a>
+                                <a href="#home" name="add-topic"> </a>
                                 <h2 className={styles.containerTitle}>Додати тест</h2>
                                 <h3 className={styles.stepTitle}>1. Додати тему</h3>
                                 <Field
@@ -214,7 +212,7 @@ export const AddTestPage = () =>{
                                         : null
                                 }
 
-                                <a href="#" name="course"> </a>
+                                <a href="#home" name="course"> </a>
                                 <div className={styles.stepTitleContainer}>
                                     <h3 className={styles.stepTitle}>2. Оберіть курс</h3>
                                     <InfoIcon className={styles.icon}
@@ -249,7 +247,7 @@ export const AddTestPage = () =>{
                                         : null
                                 }
 
-                                <a href="#" name="add-question"> </a>
+                                <a href="#home" name="add-question"> </a>
                                 <div className={styles.stepTitleContainer}>
                                     <h3 className={styles.stepTitle}>3. Додати питання</h3>
                                     <InfoIcon className={styles.icon}
@@ -338,7 +336,7 @@ export const AddTestPage = () =>{
                                     }
                                 </div>
 
-                                <a href="#" name="date-time"> </a>
+                                <a href="#home" name="date-time"> </a>
                                 <h3 className={styles.stepTitle}>4. Обрати час та дату</h3>
                                 <Field
                                     className= { errors.dateTime ? styles.fieldError : styles.textInput }
@@ -385,7 +383,7 @@ export const AddTestPage = () =>{
                                         : null
                                 }
 
-                                <a href="#" name="test-subscribe"> </a>
+                                <a href="#home" name="test-subscribe"> </a>
                                 <div className={styles.stepTitleContainer}>
                                     <h3 className={styles.stepTitle}>6. Поширити тест</h3>
                                     <InfoIcon className={styles.icon}
