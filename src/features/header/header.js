@@ -51,6 +51,18 @@ export const Header = () => {
         history.push(paths.ADD_COURSE);
     }
 
+    const handleTestListClick = () =>{
+        setTestDDState(false);
+        setCourseDDState(false);
+        history.push(paths.TESTS_LIST);
+    }
+
+    const handleCourseListClick = () =>{
+        setTestDDState(false);
+        setCourseDDState(false);
+        history.push(paths.COURSES_LIST);
+    }
+
     return (
         <div className={styles.header}>
             <div className={styles.headerMain}>
@@ -79,6 +91,7 @@ export const Header = () => {
                                     {   dropDownTestState ?
                                         <div  className={styles.dropdownContent}>
                                             <p className={styles.ddLink} onClick={handleAddTestClick}>Додати тест</p>
+                                            <p className={styles.ddLink} onClick={handleTestListClick}>Список тесів</p>
                                         </div>
                                         :
                                         null
@@ -90,6 +103,7 @@ export const Header = () => {
                                     {   dropDownCourseState ?
                                         <div  className={styles.dropdownContent}>
                                             <p className={styles.ddLink} onClick={handleAddCourseClick}>Додати курс</p>
+                                            <p className={styles.ddLink} onClick={handleCourseListClick}>Список курсів</p>
                                         </div>
                                         :
                                         null
@@ -97,8 +111,19 @@ export const Header = () => {
                                 </div>
                             </div>
                         </>
-                        :
-                        null
+                        : currentUser && currentUser.role === 1 ?
+                        <div className={styles.headerNav}>
+                            <div className="dropdown">
+                                <button onClick={() => {setTestDDState(prevState => !prevState)}} className={dropDownTestState ? styles.dropDownActive : styles.dropDown}>Тести</button>
+                                {   dropDownTestState ?
+                                    <div  className={styles.dropdownContent}>
+                                        <p className={styles.ddLink} onClick={handleTestListClick}>Список тестів</p>
+                                    </div>
+                                    :
+                                    null
+                                }
+                            </div>
+                        </div> : null
                 }
         </div>
     )

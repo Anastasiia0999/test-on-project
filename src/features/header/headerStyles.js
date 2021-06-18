@@ -59,10 +59,9 @@ export const useStylesHeader = makeStyles({
         paddingLeft:'10px'
     },
     dropDown:{
-        width:'100px',
-        margin:'0px 15px',
+        width:'150px',
+        paddingTop:"5px",
         border:'none',
-        marginLeft:'3%',
         fontSize: '20px',
         background:'#FFD7B5',
         color: '#451B00',
@@ -73,24 +72,24 @@ export const useStylesHeader = makeStyles({
         fontWeight:500
     },
     dropDownActive:{
-        width:'100px',
-        fontWeight:500,
-        margin:'0px 15px',
+        width:'150px',
+        paddingTop:"5px",
         border:'none',
-        marginLeft:'3%',
         fontSize: '20px',
         background:'#FFD7B5',
-        color: 'white',
+        color: '#451B00',
         '&:hover': {
             color: 'white',
             cursor:'pointer'
         },
+        fontWeight:500
     },
     dropdownContent:{
+        margin:"10px 0px",
         position:'relative',
         left:'20%',
         width:'90%',
-        height:'40px',
+        height:'80px',
         padding:'10px',
         background:'#FFD7B5',
         borderRadius:'5px',

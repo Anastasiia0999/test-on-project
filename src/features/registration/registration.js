@@ -230,7 +230,6 @@ export const Registration = () => {
                                 >
                                     <option value="0" selected>Вчитель</option>
                                     <option value="1" >Студент</option>
-                                    <option value="2">Користувач</option>
                                 </Field>
                             </div>
                             <div>

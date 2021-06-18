@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-
 import {
     LogIn,
     Registration,
     MainPage,
     AddTestPage,
-    AddCoursePage
+    AddCoursePage,
+    CoursesList, TestsList
 } from '../../features';
 import { paths } from './paths';
 import {ProtectedRoute} from "../../components/protectedRoute";
@@ -23,6 +23,8 @@ export const Routes = () => (
             <Route exact path={paths.REGISTRATION} component={Registration} />
             <ProtectedRoute roles={[0]} exact path={paths.ADD_TEST} component={AddTestPage} />
             <ProtectedRoute roles={[0]} exact path={paths.ADD_COURSE} component={AddCoursePage} />
+            <ProtectedRoute roles={[0]} exact path={paths.TESTS_LIST} component={TestsList} />
+            <ProtectedRoute roles={[0]} exact path={paths.COURSES_LIST} component={CoursesList} />
         </Switch>
     </>
 );

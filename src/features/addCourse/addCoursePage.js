@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import HighlightOffOutlinedIcon from '@material-ui/icons/HighlightOffOutlined';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
@@ -8,17 +8,30 @@ import {useHistory} from "react-router-dom";
 import {useStylesAddCourse} from "./addCourseStyles";
 import {paths} from "../../shared/routes/paths";
 import {useActions} from "../../shared/hooks";
-import {createCourse} from "../../models";
+import {createCourse, createdCourseSelector} from "../../models";
+import {addAlert} from "../../models/alert/redux";
+import {useSelector} from "react-redux";
+import {CircularProgress} from "@material-ui/core";
 
 export const AddCoursePage = ({handleSubmitAddQuestion}) => {
     const styles = useStylesAddCourse();
     const history = useHistory();
 
-    const dispatchCreateCourse = useActions(createCourse);
+    const [dispatchCreateCourse, dispatchAddAlert] = useActions([createCourse, addAlert]);
 
     const [emailList, setEmailList] = useState([]);
 
-    //const [dispatchAddCourse] = useActions([addCourse]);
+    const {
+        isLoading,
+        loaded
+    } = useSelector(createdCourseSelector);
+
+    useEffect(() => {
+        if(loaded){
+            dispatchAddAlert('Курс було успішно створено', 'success');
+            history.push(paths.COURSES_LIST);
+        }
+    }, [loaded]);
 
     const handleSubmit = ({name, description}) =>{
         const applicants = [...emailList].map(em => {
@@ -31,7 +44,6 @@ export const AddCoursePage = ({handleSubmitAddQuestion}) => {
             description,
             applicants
         }
-        console.log('add course', courseObject);
         dispatchCreateCourse(courseObject);
     }
 
@@ -66,6 +78,9 @@ export const AddCoursePage = ({handleSubmitAddQuestion}) => {
     return(
         <div className={styles.testPage}>
             <>
+                {
+                    isLoading ?  <CircularProgress style={{color:"#FFD7B5", margin:"0 auto", marginTop:"20px", marginBottom:"20px", width:"50px", height:"50px"}} /> : null
+                }
                 <Formik
                     initialValues={{
                         email: '',

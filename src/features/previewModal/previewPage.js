@@ -3,14 +3,17 @@ import {useStylesPreviewModal} from "./previewModalStyles";
 import DoneOutlinedIcon from "@material-ui/icons/DoneOutlined";
 
 export const PreviewPageModal = ({data, handlePreviewCancel, handleTestSubmit }) => {
+    const date = data.dateTime.slice(0, data.dateTime.indexOf('T'));
+    const resultDate = date.split('-').reverse().join('.');
+
+    const dateTime = `${resultDate} ${data.dateTime.slice(data.dateTime.indexOf('T')+1, data.dateTime.length)}:00`;
+
     const styles = useStylesPreviewModal();
 
     const initialInfoState = [false, false, false, false, false, false, false];
 
     const [expandList, setExpandList] = useState(initialInfoState);
     const [upState, setUpState] = useState(true);
-
-    console.log('preview data', data);
 
     if(upState){
         function up() {
@@ -46,7 +49,7 @@ export const PreviewPageModal = ({data, handlePreviewCancel, handleTestSubmit })
                     <h2 className={styles.containerTitle}>Перевірити тест</h2>
                     <h3 className={styles.stepTitle}>Тема: {data.theme}</h3>
 
-                    <h3 className={styles.stepTitle}>Курс: {data.courseId}</h3>
+                    <h3 className={styles.stepTitle}>Курс: {data.courseName}</h3>
 
                     <h3 className={styles.stepTitle}>Питання</h3>
 
@@ -105,7 +108,7 @@ export const PreviewPageModal = ({data, handlePreviewCancel, handleTestSubmit })
                         }
                     </div>
 
-                    <h3 className={styles.stepTitle}>Час та дата: {data.dateTime}</h3>
+                    <h3 className={styles.stepTitle}>Час та дата: {dateTime}</h3>
 
                     {
                         data.expireTime ? <h3 className={styles.stepTitle}>Обмеження часу (хвилини): {data.expireTime} </h3> : null
@@ -122,7 +125,7 @@ export const PreviewPageModal = ({data, handlePreviewCancel, handleTestSubmit })
                                 <div
                                     className={styles.questHeader}
                                 >
-                                    <p className={styles.questionTitle}>{el.email}</p>
+                                    <p className={styles.questionTitle}>{el.login}</p>
 
                                 </div>
                             </div>

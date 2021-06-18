@@ -43,7 +43,7 @@ export const questionReducer = (state = INITIAL_STATE, action) => {
             };
         case actionTypes.CLEAR_QUESTIONS:
             return {
-                data: {},
+                data: [],
                 isLoading: false,
                 loaded: false,
                 error: '',

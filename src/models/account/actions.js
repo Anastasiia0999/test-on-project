@@ -46,7 +46,7 @@ function* loginWorker({ payload }) {
 }
 
 function* logOutWorker() {
-    yield call(Cookie.del, 'user');
+    yield call(Cookie.set, 'user', JSON.stringify({role:-1}), 1);
     yield call(Cookie.del, 'jwt');
     yield put({ type: actionTypes.CLEAR_USER });
 }

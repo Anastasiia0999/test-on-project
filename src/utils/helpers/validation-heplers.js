@@ -51,10 +51,8 @@ export const addTestValidation = Yup.object().shape({
         .email('Невірна ел.пошта'),
     topic: Yup.string()
         .min(2, 'Мінімум 2 символи')
-        .matches('^([A-Za-zА-Яа-яёЁ0-9.#/]([ &_-]|, |: )?)+[A-Za-zА-Яа-яёЁ0-9]+$', 'Invalid course name')
+        .matches('^([A-Za-zА-Яа-яёЁ0-9.#/]([ &_-]|, |: )?)+[A-Za-zА-Яа-яёЁ0-9]+$', 'Некоректне введення')
         .max(50, 'Максимум 50 символів')
-        .required('Обов`язкове поле'),
-    course: Yup.string()
         .required('Обов`язкове поле'),
     dateTime: Yup.string()
         .required('Обов`язкове поле'),

@@ -7,5 +7,7 @@ export {AddTestPage} from './addTest/addTestPage'
 export {AsideBar} from './asideBar/asideBar'
 export {AddQuestionModal} from './addQuestion/addQuestion'
 export {AddCoursePage} from './addCourse/addCoursePage'
+export {CoursesList} from './coursesList/coursesList'
+export {TestsList} from './testsList/testsList'
 
 //export BannerImage from '../assets/images/test.png'

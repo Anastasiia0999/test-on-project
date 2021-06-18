@@ -1,6 +1,7 @@
 import { paths } from '../routes/paths';
 import { BASE_URL } from './config.js';
 import { Cookie } from '../../utils/helpers/index';
+import {ApiService} from "./api-service";
 //import {ApiService} from "./api-service";
 
 
@@ -33,8 +34,8 @@ export const requestInterceptor = (config) => {
     return requestConfig;
 };
 
-/*async function refreshJwt(){
-/!*    return fetch(`${appConfig.baseUrl}/internal/jwt`, {
+async function refreshJwt(){
+   /* return fetch(`${appConfig.baseUrl}/internal/jwt`, {
         headers: getAuthorizationHeaders()
     })
         .then(encodedResponse => encodedResponse.json())
@@ -46,25 +47,31 @@ export const requestInterceptor = (config) => {
             store.dispatch(commonActions.getUpdateJwtTokenError({
                 message: 'Your access token expired. Please refresh web-page'
             }));
-        });*!/
+        });*/
     try{
         const token = Cookie.get('refreshJwt');
-        console.log('refresh token',JSON.stringify({refreshToken: token}));
-        const res = await ApiService.create('/auth/refresh', JSON.stringify({refreshToken: token}));
+        console.log('refresh token',{refreshToken: token});
+        const res = await ApiService.create('/auth/refresh',{refreshToken: token});
         console.log('refresh res', res);
         //return res;
     }catch(error){
         console.log('refresh error', error);
     }
-}*/
+}
 
 export const responseInterceptor = (response) => {
     console.log('res interseptor', response.data);
-    const token = response.data.accessToken;
-    const refreshToken = response.data.refreshToken;
-    if (token) {
+    if (response.data.accessToken && response.data.refreshToken && response.data.sessionId) {
+        const token = response.data.accessToken;
+        const refreshToken = response.data.refreshToken;
+        const sessionId = response.data.sessionId;
         Cookie.set('jwt', token, 1);
         Cookie.set('refreshJwt', refreshToken, 1);
+        Cookie.set('sessionId', sessionId, 1);
+    }
+    if(response.data.accessToken && !response.data.refreshToken && !response.data.sessionId){
+        const token = response.data.accessToken;
+        Cookie.set('jwt', token, 1);
     }
     return response;
 };
@@ -75,12 +82,13 @@ export const responseErrorInterceptor = (error) => {
     console.log('response Interseptor error', error)
 
     if (error.response.status === 401 && requestUrl !== '/auth/signin') {
-       Cookie.del('jwt');
+   /*    Cookie.del('jwt');
         Cookie.del('refreshJwt');
         Cookie.del('user');
-        //const response = refreshJwt();
-        //console.log('refresh response', response);
-        window.location.href = paths.AUTH;
+        Cookie.del('sessionId');*/
+        const response = refreshJwt();
+        console.log('refresh response', response);
+        //window.location.href = paths.AUTH;
 
     }
 

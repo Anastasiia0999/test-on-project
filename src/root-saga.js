@@ -12,6 +12,6 @@ export function* rootSaga() {
         fork(testsWatcher),
         fork(authWatcher),
         fork(coursesWatcher),
-        fork(watchAddAlert)
+        fork(watchAddAlert),
     ]);
 }

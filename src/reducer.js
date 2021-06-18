@@ -13,6 +13,6 @@ export const rootReducer = combineReducers({
         questions: questionsReducer,
         users: accountReducer,
         courses: coursesReducer,
-        alerts: alertReducer
+        alerts: alertReducer,
     }),
 });
